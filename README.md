@@ -34,6 +34,14 @@ print(output_text)
 អយ្យការអមសាលាដំបូងរាជធានីភ្នំពេញ បានព្រមានថា នឹងចេញដីកាបញ្ជាឱ្យបង្ខំ និងឱ្យឃុំខ្លួនតាមនីតិវិធី ប្រសិនបើលោក រ៉ុង ឈុន ដែលបច្ចុប្បន្នជាទីប្រឹក្សាគណបក្សកម្លាំងជាតិ មិនបានបង់ប្រាក់ពិន័យចំនួន២លានរៀល ឱ្យបានមុនថ្ងៃទី០៤ ខែមីនា ឆ្នាំ២០២៤ទេនោះ។
 ```
 
+
+### Example
+
+The example below is available on [[Google Colab]](https://colab.research.google.com/drive/18lHUdJGHD55TTklwWz4d6CNOVfRYMoFG?usp=sharing)
+
+Model file is hosted on [[HuggingFace]](https://huggingface.co/seanghay/khmer-punctuation-restore)
+
+
 ### License
 
 `MIT`
