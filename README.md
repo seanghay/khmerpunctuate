@@ -2,6 +2,18 @@
 
 Built with [[xashru/punctuation-restoration]](https://github.com/xashru/punctuation-restoration) using [[xlm-roberta-base]](https://huggingface.co/FacebookAI/xlm-roberta-base) and then exported to `onnxruntime`
 
+
+### Install
+
+```shell
+pip install khmerpunctuate
+
+# Or
+pip install git+https://github.com/seanghay/khmerpunctuate.git
+```
+
+### Usage
+
 ```python
 from khmernormalizer import normalize
 from khmercut import tokenize
