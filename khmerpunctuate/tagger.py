@@ -6,13 +6,26 @@ from khmerpunctuate.utils import download_file
 from sentencepiece import SentencePieceProcessor
 from onnxruntime import InferenceSession, SessionOptions, GraphOptimizationLevel
 
-TOKEN_IDX_MAP = {0: "", 1: " ", 2: '"', 3: "!", 4: "។", 5: "?", 6: "៖"}
+TOKEN_IDX_MAP = {
+  0: "",
+  1: " ",
+  2: "!",
+  3: "។",
+  4: "?",
+  5: "៖",
+  6: "។\n",
+  7: "B-NUMBER",
+  8: "I-NUMBER",
+  9: "B-QOUTE",
+  10: "I-QOUTE",
+}
+
 SPM_MODEL_PATH = os.path.join(os.path.dirname(__file__), "sentencepiece.bpe.model")
-MODEL_PUBLIC_URL = "https://huggingface.co/seanghay/khmer-punctuation-restore/resolve/main/deep-punctuation.onnx"
+MODEL_PUBLIC_URL = "https://huggingface.co/seanghay/khmer-punctuation-restore/resolve/main/deep-punctuation-v2.onnx"
 MODEL_DIR = os.path.join(appdirs.user_cache_dir(), "khmerpunctuate")
 
-MODEL_PATH = os.path.join(MODEL_DIR, "deep-punctuation.onnx")
-MODEL_PATH_TMP = os.path.join(MODEL_DIR, "deep-punctuation.onnx.tmp")
+MODEL_PATH = os.path.join(MODEL_DIR, "deep-punctuation-v2.onnx")
+MODEL_PATH_TMP = os.path.join(MODEL_DIR, "deep-punctuation-v2.onnx.tmp")
 
 if not os.path.exists(MODEL_PATH):
   os.makedirs(MODEL_DIR, exist_ok=True)
@@ -23,7 +36,6 @@ sess_options = SessionOptions()
 sess_options.graph_optimization_level = GraphOptimizationLevel.ORT_DISABLE_ALL
 session = InferenceSession(MODEL_PATH, sess_options=sess_options)
 spm = SentencePieceProcessor(model_file=SPM_MODEL_PATH)
-
 
 def punctuate(words, max_length=256):
   word_pos = 0
