@@ -14,6 +14,24 @@ pip install git+https://github.com/seanghay/khmerpunctuate.git
 
 ### Usage
 
+Supported token types are
+
+```python
+{
+  0: "",
+  1: " ",
+  2: "!",
+  3: "។",
+  4: "?",
+  5: "៖",
+  6: "។\n",
+  7: "B-NUMBER",
+  8: "I-NUMBER",
+  9: "B-QOUTE",
+  10: "I-QOUTE",
+}
+```
+
 ```python
 from khmernormalizer import normalize
 from khmercut import tokenize
