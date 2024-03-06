@@ -27,8 +27,8 @@ Supported token types are
   6: "។\n",
   7: "B-NUMBER",
   8: "I-NUMBER",
-  9: "B-QOUTE",
-  10: "I-QOUTE",
+  9: "B-QUOTE",
+  10: "I-QUOTE",
 }
 ```
 
@@ -42,7 +42,7 @@ tokens = tokenize(text)
 
 output_text = ""
 for token, punct, punct_id in punctuate(tokens):
-  # exclude special tokens like I-NUMBER, B-NUMBER, I-QOUTE and B-QOUTE
+  # exclude special tokens like I-NUMBER, B-NUMBER, I-QUOTE and B-QUOTE
   if punct_id < 7:
     output_text += token + punct
   else:

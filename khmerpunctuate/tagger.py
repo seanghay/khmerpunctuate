@@ -16,8 +16,8 @@ TOKEN_IDX_MAP = {
   6: "។\n",
   7: "B-NUMBER",
   8: "I-NUMBER",
-  9: "B-QOUTE",
-  10: "I-QOUTE",
+  9: "B-QUOTE",
+  10: "I-QUOTE",
 }
 
 SPM_MODEL_PATH = os.path.join(os.path.dirname(__file__), "sentencepiece.bpe.model")

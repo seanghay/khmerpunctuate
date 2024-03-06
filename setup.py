@@ -5,7 +5,7 @@ with open("README.md", "r") as f:
 
 setuptools.setup(
   name="khmerpunctuate",
-  version="0.1.0",
+  version="0.1.1",
   description="Punctuation Restoration for Khmer language",
   long_description=long_description,
   long_description_content_type="text/markdown",
