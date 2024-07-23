@@ -2,6 +2,11 @@
 
 Built with [[xashru/punctuation-restoration]](https://github.com/xashru/punctuation-restoration) using [[xlm-roberta-khmer-small]](https://huggingface.co/seanghay/xlm-roberta-khmer-small) and then exported to `onnxruntime`
 
+### Features
+- Whitespaces Prediction
+- Sentence Segmentation
+- Punctuation Prediction
+- Number Entity Prediction
 
 ### Install
 
