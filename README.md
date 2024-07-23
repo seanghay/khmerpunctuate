@@ -96,3 +96,22 @@ Accuracy: 0.930086988701306
 ### License
 
 `MIT`
+
+
+### Citation
+
+```bibtex
+@inproceedings{alam-etal-2020-punctuation,
+    title = "Punctuation Restoration using Transformer Models for High-and Low-Resource Languages",
+    author = "Alam, Tanvirul  and
+      Khan, Akib  and
+      Alam, Firoj",
+    booktitle = "Proceedings of the Sixth Workshop on Noisy User-generated Text (W-NUT 2020)",
+    month = nov,
+    year = "2020",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://www.aclweb.org/anthology/2020.wnut-1.18",
+    pages = "132--142",
+}
+```
