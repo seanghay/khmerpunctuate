@@ -1,6 +1,6 @@
 ## Punctuation Restoration for Khmer language
 
-Built with [[xashru/punctuation-restoration]](https://github.com/xashru/punctuation-restoration) using [[xlm-roberta-base]](https://huggingface.co/FacebookAI/xlm-roberta-base) and then exported to `onnxruntime`
+Built with [[xashru/punctuation-restoration]](https://github.com/xashru/punctuation-restoration) using [[xlm-roberta-khmer-small]](https://huggingface.co/seanghay/xlm-roberta-khmer-small) and then exported to `onnxruntime`
 
 
 ### Install
@@ -61,6 +61,17 @@ print(output_text)
 The example below is available on [[Google Colab]](https://colab.research.google.com/drive/18lHUdJGHD55TTklwWz4d6CNOVfRYMoFG?usp=sharing)
 
 Model file is hosted on [[HuggingFace]](https://huggingface.co/seanghay/khmer-punctuation-restore)
+
+
+### Evaluation
+
+| Precision | 0.95528402 | 0.79168481 | 0.85507246 | 0.74523436 | 0.7877551  | 0.79452055 | 0.62296801 | 0.96415685 | 0.98617407 | 0.67324778 | 0.57505285 | 0.8240493  |
+|-----------|------------|------------|------------|------------|------------|------------|------------|------------|------------|------------|------------|------------|
+| Recall    | 0.96957471 | 0.73475191 | 0.13947991 | 0.86194329 | 0.69010727 | 0.63736264 | 0.08452508 | 0.96852034 | 0.99192858 | 0.22035541 | 0.21068939 | 0.77592102 |
+| F1 score  | 0.96237631 | 0.76215662 | 0.2398374  | 0.79935128 | 0.73570521 | 0.70731707 | 0.14885353 | 0.96633367 | 0.98904296 | 0.33203505 | 0.30839002 | 0.79926129 |
+
+Accuracy: 0.930086988701306
+
 
 
 ### License
