@@ -3,8 +3,8 @@ import numpy as np
 import appdirs
 import shutil
 from khmerpunctuate.utils import download_file
-from sentencepiece import SentencePieceProcessor
 from onnxruntime import InferenceSession, SessionOptions, GraphOptimizationLevel
+from tokenizers import Tokenizer
 
 TOKEN_IDX_MAP = {
   0: "",
@@ -20,12 +20,12 @@ TOKEN_IDX_MAP = {
   10: "I-QUOTE",
 }
 
-SPM_MODEL_PATH = os.path.join(os.path.dirname(__file__), "sentencepiece.bpe.model")
-MODEL_PUBLIC_URL = "https://huggingface.co/seanghay/khmer-punctuation-restore/resolve/main/deep-punctuation-v2.onnx"
+TOKENIZER_PATH = os.path.join(os.path.dirname(__file__), "tokenizer.json")
+MODEL_PUBLIC_URL = "https://huggingface.co/seanghay/khmer-punctuation-restore/resolve/main/xlm-roberta-khmer-small-punct.onnx"
 MODEL_DIR = os.path.join(appdirs.user_cache_dir(), "khmerpunctuate")
 
-MODEL_PATH = os.path.join(MODEL_DIR, "deep-punctuation-v2.onnx")
-MODEL_PATH_TMP = os.path.join(MODEL_DIR, "deep-punctuation-v2.onnx.tmp")
+MODEL_PATH = os.path.join(MODEL_DIR, "xlm-roberta-khmer-small-punct.onnx")
+MODEL_PATH_TMP = os.path.join(MODEL_DIR, "xlm-roberta-khmer-small-punct.onnx.tmp")
 
 if not os.path.exists(MODEL_PATH):
   os.makedirs(MODEL_DIR, exist_ok=True)
@@ -35,7 +35,8 @@ if not os.path.exists(MODEL_PATH):
 sess_options = SessionOptions()
 sess_options.graph_optimization_level = GraphOptimizationLevel.ORT_DISABLE_ALL
 session = InferenceSession(MODEL_PATH, sess_options=sess_options)
-spm = SentencePieceProcessor(model_file=SPM_MODEL_PATH)
+tokenizer = Tokenizer.from_file(TOKENIZER_PATH)
+
 
 def punctuate(words, max_length=256):
   word_pos = 0
@@ -44,7 +45,10 @@ def punctuate(words, max_length=256):
     x = [0]
     y_mask = [0]
     while len(x) < max_length and word_pos < len(words):
-      tokens = [token_id + 1 for token_id in spm.encode(words[word_pos])]
+      tokens = [
+        token_id
+        for token_id in tokenizer.encode(words[word_pos], add_special_tokens=False).ids
+      ]
       if len(tokens) + len(x) >= max_length:
         break
       else:
@@ -68,8 +72,7 @@ def punctuate(words, max_length=256):
     attn_mask = np.expand_dims(attn_mask, 0)
     input_values = {"input_ids": x, "attention_masks": attn_mask}
     logits = session.run(None, input_values)[0]
-    outputs = np.argmax(logits, axis=2).squeeze(0)
-
+    outputs = np.argmax(logits, axis=-1).squeeze(0)
     for idx, value in enumerate(y_mask):
       if value != 1:
         continue

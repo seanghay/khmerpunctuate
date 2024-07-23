@@ -5,7 +5,7 @@ with open("README.md", "r") as f:
 
 setuptools.setup(
   name="khmerpunctuate",
-  version="0.1.1",
+  version="0.2.0",
   description="Punctuation Restoration for Khmer language",
   long_description=long_description,
   long_description_content_type="text/markdown",
@@ -22,10 +22,10 @@ setuptools.setup(
   python_requires=">3.5",
   packages=setuptools.find_packages(exclude=["bin"]),
   package_dir={"khmerpunctuate": "khmerpunctuate"},
-  package_data={"khmerpunctuate": ["sentencepiece.bpe.model"]},
+  package_data={"khmerpunctuate": ["tokenizer.json"]},
   include_package_data=True,
   install_requires=[
-    "sentencepiece==0.2.0",
+    "tokenizers",
     "tqdm",
     "onnxruntime",
     "numpy",
